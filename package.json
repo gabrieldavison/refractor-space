@@ -1,0 +1,29 @@
+{
+  "name": "circa2000-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrieldavison/circa2000-website.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gabrieldavison/circa2000-website/issues"
+  },
+  "homepage": "https://github.com/gabrieldavison/circa2000-website#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.30.0"
+  },
+  "dependencies": {
+    "hydra-synth": "^1.3.4",
+    "p5": "^1.1.9",
+    "tone": "^14.7.58"
+  }
+}

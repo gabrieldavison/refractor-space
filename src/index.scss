@@ -1,0 +1,44 @@
+#p5-canvas {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+#hydra-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+.modal-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  #scene-modal {
+    width: 40%;
+    text-align: center;
+    background-color: black;
+    border-radius: 10px;
+    img {
+      width: 90%;
+      margin: 1em;
+    }
+  }
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.2s linear;
+}
