@@ -15,6 +15,8 @@ const sketch = function (p) {
   };
 
   p.draw = function () {
+    // p.ambientLight(60, 60, 50);
+    // p.pointLight(255, 255, 255, 100, 200, 100);
     p.background(255);
 
     p.fill(100);
@@ -23,6 +25,7 @@ const sketch = function (p) {
     p.rotateY(p.millis() / 1000);
     p.rotateX(p.millis() / 3000);
     p.scale(50);
+
     p.model(mask);
     p.pop();
   };

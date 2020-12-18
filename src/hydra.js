@@ -1,3 +1,12 @@
+export function initialScene() {
+  noise(10, 0.1, 7)
+    .rotate(3, 0.1)
+    .colorama(8)
+    .modulate(osc(1000, 10))
+    .contrast(10)
+    .out();
+}
+
 export function scene1() {
   s2.init({ src: document.getElementById("p5-canvas") });
 
@@ -16,19 +25,12 @@ export function scene1() {
         .scrollY([0.1, -1, 0.3])
     )
 
-    .diff(o2, 0.2)
+    .diff(o2)
+
     .pixelate(
       () => mouse.y * 2,
       () => mouse.y * 2
     )
-    .out();
-}
 
-export function initialScene() {
-  noise(10, 0.1, 7)
-    .rotate(3, 0.1)
-    .colorama(8)
-    .modulate(osc(1000, 10))
-    .contrast(10)
     .out();
 }
