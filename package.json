@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "hydra-synth": "^1.3.4",
+    "lodash": "^4.17.20",
     "navigo": "^7.1.2",
     "p5": "^1.1.9",
     "tone": "^14.7.58"

@@ -1,3 +1,5 @@
+import { throttle } from "lodash";
+
 export function initialScene() {
   noise(10, 0.1, 7)
     .rotate(3, 0.1)
@@ -8,14 +10,29 @@ export function initialScene() {
 }
 
 export function scene1() {
+  let scrollPixelate = 10;
+  document.addEventListener(
+    "wheel",
+    throttle((e) => incrementScroll(e), 50)
+  );
+
+  function incrementScroll(e) {
+    console.log(e);
+    e.deltaY > 0 ? (scrollPixelate += 15) : (scrollPixelate -= 15);
+  }
+  const lfo = () => Math.sin((time / 2) * Math.PI) * 0.5 + 0.5;
+
   s2.init({ src: document.getElementById("p5-canvas") });
 
   src(s2).out(o2);
 
   shape(1, 1)
+    // .mult(noise(10).pixelate(100, 100).blend(o0, 0.2).luma())
     .mult(
-      noise(() => mouse.x / 100, 0.5)
-        .blend(o0, 0.6)
+      //prettier-ignore
+      solid([0, 0, 0])
+        .pixelate(100, 100)
+        .blend(o0, 0.3)
         .luma()
     )
     .add(
@@ -25,11 +42,12 @@ export function scene1() {
         .scrollY([0.1, -1, 0.3])
     )
 
+    .blend(src(o0).contrast(2), lfo)
     .diff(o2)
-
+    .contrast(3)
     .pixelate(
-      () => mouse.y * 2,
-      () => mouse.y * 2
+      () => scrollPixelate,
+      () => scrollPixelate
     )
 
     .out();
