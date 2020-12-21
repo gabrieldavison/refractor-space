@@ -10,24 +10,21 @@ export function initialScene() {
 }
 
 export function scene1() {
-  let scrollPixelate = 10;
+  let scrollPixelate = 50;
   document.addEventListener(
-    "wheel",
+    "scroll",
     throttle((e) => incrementScroll(e), 50)
   );
 
   function incrementScroll(e) {
-    console.log(e);
-    e.deltaY > 0 ? (scrollPixelate += 15) : (scrollPixelate -= 15);
+    scrollPixelate = window.scrollY / 10;
   }
-  const lfo = () => Math.sin((time / 2) * Math.PI) * 0.5 + 0.5;
-
+  const lfo = () => Math.sin((time / 2) * Math.PI) * 0.3 + 0.3;
   s2.init({ src: document.getElementById("p5-canvas") });
 
   src(s2).out(o2);
 
   shape(1, 1)
-    // .mult(noise(10).pixelate(100, 100).blend(o0, 0.2).luma())
     .mult(
       //prettier-ignore
       solid([0, 0, 0])

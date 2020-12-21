@@ -1,6 +1,10 @@
+body {
+  height: 10000px;
+}
+
 #p5-canvas {
   display: none;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
@@ -8,7 +12,7 @@
 }
 
 #hydra-canvas {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
