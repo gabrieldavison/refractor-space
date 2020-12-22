@@ -18,5 +18,6 @@ window.onload = () => {
   hydra.setResolution(1280, 720);
   const p5Sketch = new p5(IDD, "p5-wrapper", { mode: "WEBGL" });
   Tone.start();
-  Tone.Transport.start();
+  // Tone.Transport.start();
+  Sound.start();
 };

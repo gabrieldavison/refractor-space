@@ -20,6 +20,7 @@ export default class SoundEngine {
       volume: -18,
       playbackRate: this.playbackRate,
       destination: this.reverb,
+      onload: this.attemptStart,
     });
 
     this.droneLoop = new Loop({
@@ -36,6 +37,7 @@ export default class SoundEngine {
       volume: -10,
       playbackRate: this.playbackRate,
       destination: this.reverb,
+      onload: this.attemptStart,
     });
 
     this.chordsLoop = new Loop({
@@ -52,6 +54,7 @@ export default class SoundEngine {
       volume: 0,
       playbackRate: this.playbackRate,
       destination: this.delay,
+      onload: this.attemptStart,
     });
 
     this.hannahLoop = new Loop({
@@ -78,6 +81,7 @@ export default class SoundEngine {
       volume: 0,
       playbackRate: this.playbackRate,
       destination: this.delay,
+      onload: this.attemptStart,
     });
 
     this.laracroftLoop = new Loop({
@@ -97,11 +101,44 @@ export default class SoundEngine {
       ],
     });
 
+    this.players = [
+      this.dronePlayer,
+      this.chordsPlayer,
+      this.hannahPlayer,
+      this.laracroftPlayer,
+    ];
+
     this.conductor = new Conductor([
       this.droneLoop,
       this.chordsLoop,
       this.hannahLoop,
       this.laracroftLoop,
     ]);
+
+    this.playing = false;
+  }
+
+  // pass callback to each player that check is playing = true and soundEngine start if it is
+
+  attemptStart() {
+    console.log("attempt");
+    if (this.playing) {
+      this.start();
+    }
+  }
+
+  start(players = this.players) {
+    // check if players are ready, if they are then tone.start
+    const isReady = (player) => player.tonePlayer.loaded;
+    this.playing = true;
+    if (players.every(isReady)) {
+      console.log("ready");
+      Tone.Transport.start();
+    } else {
+      console.log("not starting");
+      setTimeout(() => this.start(players), 300);
+    }
+
+    // change started to true
   }
 }

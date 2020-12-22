@@ -2,7 +2,7 @@ import shuffleArray from "./shuffleArray";
 import * as Tone from "tone";
 export default class Conductor {
   constructor(parts) {
-    this.parts = shuffleArray(parts);
+    this.parts = [parts[0], ...shuffleArray(parts.slice(1))];
     this.spacings = this.generateSpacings(9, 15);
     this.positionIndex = 0;
     this.spacingsIndex = 0;
@@ -23,7 +23,6 @@ export default class Conductor {
       let spacing = 0;
       if (i > 0) {
         spacing += Math.floor(Math.random() * (max - min) + min);
-        console.log(spacing);
         //Makes sure all parts stay playing together for 15 seconds
         if (i === this.parts.length) {
           spacing = 15;
@@ -32,7 +31,6 @@ export default class Conductor {
       }
       spacingsArray.push(spacing);
     }
-    console.log(spacingsArray);
     return spacingsArray;
   }
 
