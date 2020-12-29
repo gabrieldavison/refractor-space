@@ -1,0 +1,26 @@
+body {
+  height: 10000px;
+}
+.content-container {
+  height: 100%;
+}
+#p5-canvas {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+#hydra-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+.extender {
+  height: 10000px;
+}

@@ -1,14 +1,11 @@
 import Hydra from "hydra-synth";
-import { initialScene, scene1 } from "./hydra";
-
-//Set up Hydra
-const hydraCanvas = document.getElementById("hydra-canvas");
-const hydra = new Hydra({
-  canvas: hydraCanvas,
-  detectAudio: false,
-});
-hydra.setResolution(1280, 720);
+import { initialScene } from "./hydra";
 
 window.onload = () => {
+  const hydra = new Hydra({
+    canvas: document.getElementById("hydra-canvas"),
+    detectAudio: false,
+  });
+  hydra.setResolution(1280, 720);
   initialScene();
 };

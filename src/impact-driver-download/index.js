@@ -21,3 +21,21 @@ window.onload = () => {
   // Tone.Transport.start();
   Sound.start();
 };
+
+// Sets up infinite scroll
+
+let pageHeight = 10000;
+let extenderHeight = 10000;
+const contentContainer = document.getElementById("content-container");
+console.log(contentContainer);
+
+document.addEventListener("scroll", () => {
+  if (window.scrollY > pageHeight - 1000) {
+    console.log("extend");
+    const extender = document.createElement("div");
+    extender.style.height = `${extenderHeight}px`;
+    contentContainer.appendChild(extender);
+    pageHeight += 10000;
+    // extenderHeight += 10000;
+  }
+});

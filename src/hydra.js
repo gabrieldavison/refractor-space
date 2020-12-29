@@ -1,11 +1,18 @@
 import { throttle } from "lodash";
 
 export function initialScene() {
-  noise(10, 0.1, 7)
-    .rotate(3, 0.1)
-    .colorama(8)
-    .modulate(osc(1000, 10))
-    .contrast(10)
+  // noise(10, 0.1, 7)
+  //   .rotate(3, 0.1)
+  //   .colorama(8)
+  //   .modulate(osc(1000, 10))
+  //   .contrast(10)
+  //   .out();
+
+  shape(1, 1)
+    .mult(voronoi(1000, 2).blend(o0).luma())
+    .add(noise(1000).thresh(0.8))
+
+    .scrollY([0.1, -0.0625, 0.005, 0.00001], 0)
     .out();
 }
 
