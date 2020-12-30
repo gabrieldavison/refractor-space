@@ -14,7 +14,7 @@ export default class SoundEngine {
     this.delay = new Tone.FeedbackDelay(0.5, 0.6).connect(this.reverb);
 
     this.dronePlayer = new Player({
-      url: require("./audio/verse/DroneVerse.wav"),
+      url: require("./audio/IDD/DroneVerseCompressed.m4a"),
       fadeIn: 0.1,
       fadeOut: 0.2,
       volume: -18,
@@ -31,7 +31,7 @@ export default class SoundEngine {
     });
 
     this.chordsPlayer = new Player({
-      url: require("./audio/verse/Synth Chords Verse.wav"),
+      url: require("./audio/IDD/SynthChordsVerseCompressed.m4a"),
       fadeIn: 0.2,
       fadeOut: 0.2,
       volume: -10,
@@ -48,7 +48,7 @@ export default class SoundEngine {
     });
 
     this.hannahPlayer = new Player({
-      url: require("./audio/verse/Hannah Vocals Verse.wav"),
+      url: require("./audio/IDD/HannahVocalsVerseCompressed.m4a"),
       fadeIn: 0.1,
       fadeOut: 0,
       volume: 0,
@@ -75,7 +75,7 @@ export default class SoundEngine {
     });
 
     this.laracroftPlayer = new Player({
-      url: require("./audio/verse/Lara croft Verse.wav"),
+      url: require("./audio/IDD/LaracroftVerseCompressed.m4a"),
       fadeIn: 0.1,
       fadeOut: 0,
       volume: 0,
