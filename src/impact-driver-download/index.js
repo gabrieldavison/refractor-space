@@ -30,7 +30,7 @@ const contentContainer = document.getElementById("content-container");
 console.log(contentContainer);
 
 document.addEventListener("scroll", () => {
-  if (window.scrollY > pageHeight - 1000) {
+  if (window.scrollY > pageHeight - 2000) {
     console.log("extend");
     const extender = document.createElement("div");
     extender.style.height = `${extenderHeight}px`;
