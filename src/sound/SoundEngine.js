@@ -6,10 +6,14 @@ import Conductor from "./modules/Conductor";
 
 export default class SoundEngine {
   constructor() {
-    this.playbackRate = Math.floor(Math.random() * (100 - 75) + 80) / 100;
-    // this.FFT = new Tone.FFT({ size: 16, normalRange: true }).toDestination();'
-    this.FFT = new Tone.DCMeter().toDestination();
-    this.master = new Tone.Gain().connect(this.FFT);
+    const MinPlaybackRate = 60;
+    const MaxPlaybackRate = 70;
+
+    this.playbackRate =
+      Math.floor(Math.random() * (100 - MinPlaybackRate) + MaxPlaybackRate) /
+      100;
+    this.limiter = new Tone.Limiter(-3).toDestination();
+    this.master = new Tone.Gain().connect(this.limiter);
     this.reverb = new Tone.Reverb(3).connect(this.master);
     this.delay = new Tone.FeedbackDelay(0.5, 0.6).connect(this.reverb);
 
