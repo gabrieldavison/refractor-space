@@ -65,7 +65,8 @@ export const Home = function (p) {
 
 export const IDD = function (p) {
   let mask;
-
+  console.log(p.windowWidth);
+  const screenMultiplier = p.windowWidth < 750 ? 0.6 : 1;
   p.preload = function () {
     mask = p.loadModel(maskUrl);
   };
@@ -84,11 +85,15 @@ export const IDD = function (p) {
     p.fill(255);
     renderMask1();
     if (window.scrollY > 3000) {
-      renderMask(p.windowWidth / 4, 0.3, 50);
+      renderMask(p.windowWidth / 4, 0.3, 30 * screenMultiplier);
     }
 
     if (window.scrollY > 6000) {
-      renderMask(p.windowWidth / 7, 0.6, 20);
+      renderMask(p.windowWidth / 7, 0.6, 10 * screenMultiplier);
+    }
+
+    if (window.scrollY > 9000) {
+      renderMask(p.windowWidth / 10, 0.2, 100 * screenMultiplier);
     }
   };
 
@@ -97,12 +102,14 @@ export const IDD = function (p) {
     p.translate(
       (p.windowWidth / 4) * -1,
 
-      wrapScroll(0.6)
+      wrapScroll(0.6),
+      100
     );
-    p.rotateX(90);
-    p.rotateY(p.millis() / 500);
+    p.rotateX(p.millis() / 2000);
+    p.rotateY(p.millis() / 1000);
+    // p.rotateY(p.millis() / 500);
 
-    p.scale(70);
+    p.scale(70 * screenMultiplier);
     p.specularMaterial(250);
     p.model(mask);
     p.pop();

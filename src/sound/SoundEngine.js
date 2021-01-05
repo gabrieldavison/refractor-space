@@ -141,4 +141,7 @@ export default class SoundEngine {
 
     // change started to true
   }
+  mute() {
+    Tone.master.mute();
+  }
 }
