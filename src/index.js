@@ -1,6 +1,5 @@
 import Hydra from "hydra-synth";
 import { initialScene } from "./hydra";
-import iOS from "./utils/iOS";
 
 window.onload = () => {
   const hydra = new Hydra({

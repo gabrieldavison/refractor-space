@@ -21,7 +21,7 @@ export default class SoundEngine {
       url: require("./audio/IDD/DroneVerseCompressed.m4a"),
       fadeIn: 0.1,
       fadeOut: 0.2,
-      volume: -18,
+      volume: -8,
       playbackRate: this.playbackRate,
       destination: this.reverb,
       onload: this.attemptStart,
@@ -38,7 +38,7 @@ export default class SoundEngine {
       url: require("./audio/IDD/SynthChordsVerseCompressed.m4a"),
       fadeIn: 0.2,
       fadeOut: 0.2,
-      volume: -10,
+      volume: -2,
       playbackRate: this.playbackRate,
       destination: this.reverb,
       onload: this.attemptStart,
@@ -71,7 +71,7 @@ export default class SoundEngine {
         () =>
           randomValueSwitcher({
             low: -100,
-            high: -5,
+            high: -2,
             probability: 0.8,
             callback: this.hannahPlayer.setVolume,
           }),
@@ -98,7 +98,7 @@ export default class SoundEngine {
         () =>
           randomValueSwitcher({
             low: -100,
-            high: -15,
+            high: -10,
             probability: 0.9,
             callback: this.laracroftPlayer.setVolume,
           }),

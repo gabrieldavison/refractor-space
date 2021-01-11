@@ -1,9 +1,8 @@
-import { IDD, IDDIphone } from "../p5Sketch";
+import { IDD } from "../p5Sketch";
 import Hydra from "hydra-synth";
 import * as Tone from "tone";
 import SoundEngine from "../sound/SoundEngine";
 import p5 from "p5";
-import iOS from "../utils/iOS";
 
 //Set up Hydra
 const hydraCanvas = document.getElementById("hydra-canvas");
