@@ -1,8 +1,9 @@
-import { IDD } from "../p5Sketch";
+import { IDD, IDDIphone } from "../p5Sketch";
 import Hydra from "hydra-synth";
 import * as Tone from "tone";
 import SoundEngine from "../sound/SoundEngine";
 import p5 from "p5";
+import iOS from "../utils/iOS";
 
 //Set up Hydra
 const hydraCanvas = document.getElementById("hydra-canvas");
@@ -11,18 +12,26 @@ const hydraCanvas = document.getElementById("hydra-canvas");
 const Sound = new SoundEngine();
 
 window.onload = () => {
-  const hydra = new Hydra({
-    canvas: hydraCanvas,
-    detectAudio: false,
-    enableStreamCapture: false,
-  });
-  hydra.setResolution(1280, 720);
-  const p5Sketch = new p5(IDD, "p5-wrapper", { mode: "WEBGL" });
-  Tone.start();
-  // Tone.Transport.start();
-  Sound.start();
+  if (!iOS()) {
+    const hydra = new Hydra({
+      canvas: hydraCanvas,
+      detectAudio: false,
+      enableStreamCapture: false,
+    });
+    hydra.setResolution(1280, 720);
+    const p5Sketch = new p5(IDD, "p5-wrapper", { mode: "WEBGL" });
+  } else {
+    console.log("iphone");
+    const p5Sketch = new p5(IDDIphone, "p5-wrapper", { mode: "WEBGL" });
+  }
 };
-window.onclick = Tone.start;
+const playModal = document.getElementById("play-modal");
+const playButton = document.getElementById("play-button");
+playButton.addEventListener("click", () => {
+  Tone.start().then(Sound.start());
+  playModal.classList.add("hidden");
+});
+
 // Sets up infinite scroll
 
 let pageHeight = 10000;

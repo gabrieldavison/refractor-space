@@ -7,6 +7,6 @@ window.onload = () => {
     detectAudio: false,
     enableStreamCapture: false,
   });
-  hydra.setResolution(1280, 720);
+  hydra.setResolution(854, 480);
   initialScene();
 };

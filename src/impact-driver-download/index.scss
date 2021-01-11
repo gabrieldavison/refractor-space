@@ -4,13 +4,20 @@ body {
 .content-container {
   height: 100%;
 }
-#p5-canvas {
-  display: none;
+#p5-canvas,
+#p5-canvas-iphone {
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
   width: 100vw;
+}
+#p5-canvas {
+  display: none;
+}
+
+#p5-canvas-iphone {
+  z-index: 10;
 }
 
 #hydra-canvas {
@@ -23,4 +30,24 @@ body {
 
 .extender {
   height: 10000px;
+}
+#play-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+  .play-button {
+    display: block;
+    width: 150px;
+    opacity: 0.7;
+  }
+}
+
+.hidden {
+  display: none !important;
 }

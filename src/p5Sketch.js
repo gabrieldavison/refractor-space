@@ -136,3 +136,76 @@ export const IDD = function (p) {
     );
   }
 };
+
+export const IDDIphone = function (p) {
+  let mask;
+  console.log(p.windowWidth);
+  const screenMultiplier = p.windowWidth < 750 ? 0.6 : 1;
+  p.preload = function () {
+    mask = p.loadModel(maskUrl);
+  };
+
+  p.setup = function () {
+    let cnv = p.createCanvas(p.windowWidth, p.windowHeight, p.WEBGL);
+    cnv.id("p5-canvas-iphone");
+  };
+
+  p.draw = function () {
+    // p.ambientLight(60, 60, 50);
+    p.pointLight(200, 200, 200, p.windowWidth / 4, p.windowHeight / 2, 50);
+    p.background(0);
+
+    p.fill(255);
+    renderMask1();
+    if (window.scrollY > 3000) {
+      renderMask(p.windowWidth / 4, 0.3, 30 * screenMultiplier);
+    }
+
+    if (window.scrollY > 6000) {
+      renderMask(p.windowWidth / 7, 0.6, 10 * screenMultiplier);
+    }
+
+    if (window.scrollY > 9000) {
+      renderMask(p.windowWidth / 10, 0.2, 100 * screenMultiplier);
+    }
+  };
+
+  function renderMask1() {
+    p.push();
+    p.translate(
+      (p.windowWidth / 4) * -1,
+
+      wrapScroll(0.6),
+      100
+    );
+    p.rotateX(p.millis() / 2000);
+    p.rotateY(p.millis() / 1000);
+    // p.rotateY(p.millis() / 500);
+
+    p.scale(70 * screenMultiplier);
+    p.specularMaterial(250);
+    p.model(mask);
+    p.pop();
+  }
+
+  function renderMask(x, yMultiplier, scale) {
+    p.push();
+    p.translate(x, wrapScroll(yMultiplier));
+    p.rotateY(p.millis() / 1000);
+    p.rotateX(p.millis() / 3000);
+    p.scale(scale);
+    p.specularMaterial(250);
+    p.model(mask);
+    p.pop();
+  }
+
+  function wrapScroll(multiplier) {
+    return p.map(
+      ((multiplier * window.scrollY) % p.windowHeight) - p.windowHeight / 2,
+      -p.windowHeight / 2,
+      p.windowHeight / 2,
+      p.windowHeight / 2,
+      -p.windowHeight / 2
+    );
+  }
+};
