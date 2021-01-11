@@ -1,4 +1,3 @@
-/* apply a natural box layout model to all elements, but allowing components to change */
 html {
   box-sizing: border-box;
 }
@@ -8,111 +7,94 @@ html {
   box-sizing: inherit;
 }
 
+html,
+body {
+  height: 100vh;
+  width: 100vw;
+}
+body {
+  background-color: black;
+}
+
 #hydra-canvas {
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
+  z-index: -10;
 }
 
 .modal-wrapper {
-  width: 100vw;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 
-  #scene-modal {
-    max-width: 960px;
+  .scene-modal {
+    height: auto;
+    width: 95%;
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
     text-align: center;
-    width: 100%;
-    z-index: 5;
-    background-color: rgba(0, 0, 0, 0.2);
-  }
-  .ticket {
-    display: inline-block;
-
-    img {
-      max-width: 110px;
-      margin: 0.5em;
-    }
   }
 
   .site-title {
     font-family: EnterTheGrid;
     color: white;
     font-size: 2em;
-    margin: 0.5em;
-    margin-bottom: 0;
+    padding: 0.5em;
   }
-
   .site-description {
-    padding: 0.5em 2em;
     font-family: TerminalGrotesque;
-    font-size: 1em;
+    font-size: 0.9em;
     color: white;
+    padding: 0 1em;
   }
 
-  .button-link {
+  .ticket-wrapper {
+    display: inline;
+  }
+  .ticket-img {
+    width: 40%;
     display: inline-block;
-    width: 30px;
-    margin: 1em;
+    padding: 0.5em;
+  }
+  .button-link {
+    width: 35px;
+    margin: 0 1em;
   }
 }
 
-.hidden {
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0.5s, opacity 0.2s linear;
-}
-@media (min-width: 370px) {
+@media only screen and (min-width: 768px) {
   .modal-wrapper {
-    height: 100vh;
-  }
-  .ticket {
-    img {
-      max-width: 130px;
-    }
-  }
-}
-
-@media only screen and (min-width: 780px) {
-  /* For desktop: */
-  .modal-wrapper {
-    #scene-modal {
-      border-radius: 10px;
-      border: 2px solid white;
-    }
-
-    .ticket {
-      img {
-        max-width: 300px;
-      }
-    }
     .site-title {
-      font-size: 3em;
+      font-size: 2em;
     }
     .site-description {
-      font-size: 1.2em;
+      font-size: 1em;
+    }
+
+    .ticket-img {
+      width: 25%;
     }
     .button-link {
-      width: 50px;
+      width: 35px;
+      margin: 1em;
     }
   }
 }
 
-@media (min-width: 1024px) {
+@media only screen and (min-width: 1000px) {
   .modal-wrapper {
-    .ticket {
-      max-width: 400px;
+    .scene-modal {
+      max-width: 800px;
     }
-    .site-title {
-      font-size: 3em;
+    .ticket-img {
+      width: 30%;
     }
   }
 }
-
-// @media (min-width: 1200px) {
-// }
