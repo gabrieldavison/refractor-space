@@ -22,7 +22,7 @@ window.onload = () => {
   // Tone.Transport.start();
   Sound.start();
 };
-window.onClick = Tone.start;
+window.onclick = Tone.start;
 // Sets up infinite scroll
 
 let pageHeight = 10000;
