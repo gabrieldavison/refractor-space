@@ -12,18 +12,13 @@ const hydraCanvas = document.getElementById("hydra-canvas");
 const Sound = new SoundEngine();
 
 window.onload = () => {
-  if (!iOS()) {
-    const hydra = new Hydra({
-      canvas: hydraCanvas,
-      detectAudio: false,
-      enableStreamCapture: false,
-    });
-    hydra.setResolution(1280, 720);
-    const p5Sketch = new p5(IDD, "p5-wrapper", { mode: "WEBGL" });
-  } else {
-    console.log("iphone");
-    const p5Sketch = new p5(IDDIphone, "p5-wrapper", { mode: "WEBGL" });
-  }
+  const hydra = new Hydra({
+    canvas: hydraCanvas,
+    detectAudio: false,
+    enableStreamCapture: false,
+  });
+  hydra.setResolution(1280, 720);
+  const p5Sketch = new p5(IDD, "p5-wrapper", { mode: "WEBGL" });
 };
 const playModal = document.getElementById("play-modal");
 const playButton = document.getElementById("play-button");
