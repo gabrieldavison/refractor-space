@@ -1,0 +1,20 @@
+.back-button-wrapper {
+  position: fixed;
+  top: 20;
+  left: 0;
+  z-index: 100;
+  padding: 1em;
+
+  .back-button {
+    font-size: 2em;
+    color: white;
+    text-decoration: none;
+    font-family: TerminalGrotesque, monospace;
+    :hover {
+      text-decoration: underline;
+    }
+  }
+}
+p {
+  padding: 2em !important;
+}

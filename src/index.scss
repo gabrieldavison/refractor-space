@@ -53,6 +53,9 @@ body {
     font-size: 0.9em;
     color: white;
     padding: 0 1em;
+    a {
+      color: white;
+    }
   }
 
   .ticket-wrapper {
@@ -66,6 +69,16 @@ body {
   .button-link {
     width: 35px;
     margin: 0 1em;
+  }
+
+  .credits-wrapper {
+    text-align: end;
+    padding-right: 1em;
+    padding-bottom: 0.5em;
+    .credits {
+      font-family: TerminalGrotesque, monospace;
+      color: white;
+    }
   }
 }
 
