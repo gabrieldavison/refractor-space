@@ -1,5 +1,5 @@
 import Hydra from "hydra-synth";
-import { initialScene } from "./hydra";
+import hydraIndex from "./hydraIndex";
 
 window.onload = () => {
   const hydra = new Hydra({
@@ -8,5 +8,5 @@ window.onload = () => {
     enableStreamCapture: false,
   });
   hydra.setResolution(854, 480);
-  initialScene();
+  hydraIndex();
 };

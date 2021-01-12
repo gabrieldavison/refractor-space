@@ -36,7 +36,7 @@ body {
   .scene-modal {
     height: auto;
     width: 95%;
-    border: 2px solid white;
+    border: 1px solid white;
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.6);
     text-align: center;
@@ -93,6 +93,10 @@ body {
     .scene-modal {
       max-width: 800px;
     }
+    .site-description {
+      font-size: 1.2em;
+    }
+
     .ticket-img {
       width: 30%;
     }

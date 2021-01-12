@@ -1,14 +1,14 @@
-import { IDD } from "../p5Sketch";
+import p5IDD from "./p5IDD";
 import Hydra from "hydra-synth";
 import * as Tone from "tone";
-import SoundEngine from "../sound/SoundEngine";
+import SoundEngineIDD from "../sound/SoundEngineIDD";
 import p5 from "p5";
 
 //Set up Hydra
 const hydraCanvas = document.getElementById("hydra-canvas");
 
 //Set up sound engine
-const Sound = new SoundEngine();
+const Sound = new SoundEngineIDD();
 
 window.onload = () => {
   const hydra = new Hydra({
@@ -17,7 +17,7 @@ window.onload = () => {
     enableStreamCapture: false,
   });
   hydra.setResolution(1280, 720);
-  const p5Sketch = new p5(IDD, "p5-wrapper", { mode: "WEBGL" });
+  const sketch = new p5(p5IDD, "p5-wrapper", { mode: "WEBGL" });
 };
 const playModal = document.getElementById("play-modal");
 const playButton = document.getElementById("play-button");
