@@ -125,7 +125,6 @@ export default class SoundEngineIDD {
   // pass callback to each player that check is playing = true and soundEngine start if it is
 
   attemptStart() {
-    console.log("attempt");
     if (this.playing) {
       this.start();
     }
@@ -136,10 +135,8 @@ export default class SoundEngineIDD {
     const isReady = (player) => player.tonePlayer.loaded;
     this.playing = true;
     if (players.every(isReady)) {
-      console.log("ready");
       Tone.Transport.start();
     } else {
-      console.log("not starting");
       setTimeout(() => this.start(players), 300);
     }
 

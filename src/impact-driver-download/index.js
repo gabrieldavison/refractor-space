@@ -31,11 +31,9 @@ playButton.addEventListener("click", () => {
 let pageHeight = 10000;
 let extenderHeight = 10000;
 const contentContainer = document.getElementById("content-container");
-console.log(contentContainer);
 
 document.addEventListener("scroll", () => {
   if (window.scrollY > pageHeight - 2000) {
-    console.log("extend");
     const extender = document.createElement("div");
     extender.style.height = `${extenderHeight}px`;
     contentContainer.appendChild(extender);

@@ -51,13 +51,11 @@ export default class Loop {
 
   start(time) {
     this.toneLoop.start(time);
-    console.log("starting part");
   }
   stop(time) {
     //this.toneLoop.cancel(time);
     this.toneLoop.stop(time);
     this.playing = false;
-    console.log("stopping part");
   }
 
   executeCallbacks() {

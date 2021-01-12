@@ -3,7 +3,6 @@ import hydraIDD from "./hydraIDD";
 
 const p5IDD = function (p) {
   let mask;
-  console.log(p.windowWidth);
   const screenMultiplier = p.windowWidth < 750 ? 0.6 : 1;
   p.preload = function () {
     mask = p.loadModel(maskUrl);

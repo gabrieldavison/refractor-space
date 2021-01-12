@@ -8,7 +8,6 @@ function hydraIDD() {
   );
 
   function incrementScroll(e) {
-    console.log(e);
     scrollPixelate = window.scrollY / 10;
   }
 

@@ -39,22 +39,18 @@ export default class Conductor {
       this.positionIndex < this.parts.length &&
       this.spacingsIndex < this.parts.length
     ) {
-      console.log("case 1" + time);
       this.parts[this.positionIndex].start(time);
       this.positionIndex += 1;
       this.spacingsIndex += 1;
     } else if (this.spacingsIndex === this.parts.length) {
-      console.log("case 2" + time);
       this.parts = shuffleArray(this.parts);
       this.positionIndex = 0;
       this.parts[this.positionIndex].stop(time);
       this.spacingsIndex += 1;
     } else if (this.spacingsIndex < this.spacings.length - 1) {
-      console.log("case 3" + time);
       this.positionIndex += 1;
       this.spacingsIndex += 1;
       this.parts[this.positionIndex].stop(time);
-      console.log(this.parts[this.positionIndex]);
     } else {
       this.positionIndex = 0;
       this.spacingsIndex = 0;
