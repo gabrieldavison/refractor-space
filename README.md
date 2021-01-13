@@ -2,6 +2,8 @@
 
 A piece of interactive media built and designed in collaboration with [Circa2000](https://www.facebook.com/circatwothousand/) and Simonie Records.
 
+Uses [hydra-synth](https://github.com/ojack/hydra-synth) / [p5.js](https://github.com/processing/p5.js/) for visuals. The generative sound engine was built using [Tone.js](https://tonejs.github.io/).
+
 ## Press Release
 
 ---
