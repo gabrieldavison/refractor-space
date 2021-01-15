@@ -1,5 +1,5 @@
 # Refractor Space
-[Got to Site](www.refractorspace.net)
+[Go to Site](www.refractorspace.net)
 
 A piece of interactive media built and designed in collaboration with [Circa2000](https://www.facebook.com/circatwothousand/) and Simonie Records.
 
