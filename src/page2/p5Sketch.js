@@ -18,6 +18,8 @@ const p5Sketch = (p) => {
   let camCenterX = 0;
   let camCenterY = 0;
   let camCenterZ = 0;
+  let camTargetX = 0;
+  let camTargetY = 0;
 
   p.preload = function () {
     mask = p.loadModel(maskUrl);
@@ -36,6 +38,11 @@ const p5Sketch = (p) => {
     hydraSketch();
   };
 
+  p.mouseDragged = function () {
+    camTargetX = p.mouseX;
+    camTargetY = p.mouseY;
+  };
+
   p.draw = function () {
     hydraContext2d.drawImage(hydraCanvas, 0, 0);
     hydraImageData = hydraContext2d.getImageData(
@@ -44,30 +51,56 @@ const p5Sketch = (p) => {
       hydraCanvas2d.width,
       hydraCanvas2d.height
     );
+    p.ambientLight(250);
+    p.background(0);
+    //Set up camera
 
-    p.background(100);
+    // camX = p.map(p.mouseX, 0, p.width, 500, -500);
+    // camY = p.map(p.mouseY, 0, p.height, 500, -500);
 
-    camX = p.map(p.mouseX, 0, p.width, 500, -500);
-    camY = p.map(p.mouseY, 0, p.height, 500, -500);
+    camX = p.map(p.lerp(p.width / 2, camTargetX, 0.4), 0, p.width, 500, -500);
+    camY = p.map(p.lerp(p.height / 2, camTargetY, 0.4), 0, p.height, 500, -500);
+
     p.camera(camX, camY, camZ, camCenterX, camCenterY, camCenterZ, 0, 1, 0);
+
+    //Draw plane 1
     p.push();
     p.rotateX(p.HALF_PI);
     p.translate(0, -150, -250);
     p.noFill();
-
-    p.normalMaterial();
     p.texture(hydraImageData);
-    p.plane(1000, 1000);
-
+    p.plane(800, 800);
     p.pop();
 
+    //Draw plane 2
     p.push();
+    p.translate(-600, -200, -700);
+    p.rotateX(15);
+    p.rotateY(15);
+    p.noFill();
+    p.normalMaterial(250);
+    p.texture(hydraImageData);
+    p.plane(800, 800);
+    p.pop();
 
+    //Draw plane 2
+    p.push();
+    p.translate(600, -200, -700);
+    p.rotateX(345);
+    p.rotateY(345);
+    p.noFill();
+    p.normalMaterial();
+    p.texture(hydraImageData);
+    p.plane(800, 800);
+    p.pop();
+
+    //Draw Mask
+    p.push();
+    p.translate(0, 0, -200);
     p.scale(50);
     p.rotateZ(p.PI);
     p.noFill();
     p.normalMaterial();
-
     p.model(mask);
     p.pop();
   };
