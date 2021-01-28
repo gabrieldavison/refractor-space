@@ -1,8 +1,10 @@
 import p5 from "p5";
 import p5Sketch from "./p5Sketch";
 import Hydra from "hydra-synth";
-import hydraSketch from "./hydraSketch";
+import SoundEngineGOML from "../sound/SoundEngineGOML";
+import * as Tone from "tone";
 
+const Sound = new SoundEngineGOML();
 const hydraCanvas = document.getElementById("hydra-canvas");
 
 window.onload = () => {
@@ -14,4 +16,5 @@ window.onload = () => {
     enableStreamCapture: false,
   });
   hydra.setResolution(500, 500);
+  Tone.start().then(Sound.start());
 };

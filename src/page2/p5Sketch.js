@@ -20,6 +20,8 @@ const p5Sketch = (p) => {
   let camCenterZ = 0;
   let camTargetX = 0;
   let camTargetY = 0;
+  let camPosX = 0;
+  let camPosY = 0;
 
   p.preload = function () {
     mask = p.loadModel(maskUrl);
@@ -36,11 +38,17 @@ const p5Sketch = (p) => {
     let cam = p.camera();
     camZ = p.height / 2.0 / p.tan((p.PI * 30.0) / 180.0);
     hydraSketch();
+    camTargetX = p.width / 2;
+    camTargetY = p.height / 2;
   };
 
   p.mouseDragged = function () {
     camTargetX = p.mouseX;
     camTargetY = p.mouseY;
+  };
+  p.mouseReleased = function () {
+    camTargetX = p.width / 2;
+    camTargetY = p.height / 2;
   };
 
   p.draw = function () {
@@ -52,14 +60,23 @@ const p5Sketch = (p) => {
       hydraCanvas2d.height
     );
     p.ambientLight(250);
-    p.background(0);
+    p.background(200);
     //Set up camera
+    camPosX = p.lerp(camPosX, camTargetX, 0.05);
+    camPosY = p.lerp(camPosY, camTargetY, 0.05);
 
     // camX = p.map(p.mouseX, 0, p.width, 500, -500);
     // camY = p.map(p.mouseY, 0, p.height, 500, -500);
 
-    camX = p.map(p.lerp(p.width / 2, camTargetX, 0.4), 0, p.width, 500, -500);
-    camY = p.map(p.lerp(p.height / 2, camTargetY, 0.4), 0, p.height, 500, -500);
+    // if(camPosX < camTargetX) {
+    //   camPosX += p.lerp(p.width / 2, camTargetX, 0.1)
+    // }
+
+    camX = p.map(camPosX, 0, p.width, 300, -300);
+    camY = p.map(camPosY, 0, p.height, 300, -300);
+
+    // camX = p.map(p.lerp(p.width / 2, camTargetX, 0.1), 0, p.width, 500, -500);
+    // camY = p.map(p.lerp(p.height / 2, camTargetY, 0.4), 0, p.height, 500, -500);
 
     p.camera(camX, camY, camZ, camCenterX, camCenterY, camCenterZ, 0, 1, 0);
 
