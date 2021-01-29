@@ -68,15 +68,15 @@ const p5Sketch = (p) => {
     camPosX = p.lerp(camPosX, camTargetX, 0.05);
     camPosY = p.lerp(camPosY, camTargetY, 0.05);
 
-    camX = p.map(camPosX, 0, p.width, 300, -300);
-    camY = p.map(camPosY, 0, p.height, 300, -300);
+    camX = p.map(camPosX, 0, p.width, 500, -500);
+    camY = p.map(camPosY, 0, p.height, 500, -500);
 
     p.camera(camX, camY, camZ, camCenterX, camCenterY, camCenterZ, 0, 1, 0);
 
     //Draw plane 1
     p.push();
     p.rotateX(p.HALF_PI);
-    p.translate(0, -150, -250);
+    p.translate(0, -275, -350);
     p.noStroke();
     p.texture(hydraImageData);
     p.plane(800, 800);

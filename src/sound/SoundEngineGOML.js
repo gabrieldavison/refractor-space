@@ -6,80 +6,56 @@ import Conductor from "./modules/Conductor";
 
 export default class SoundEngineGOML {
   constructor() {
-    const MinPlaybackRate = 60;
-    const MaxPlaybackRate = 70;
+    const MinPlaybackRate = 55;
+    const MaxPlaybackRate = 60;
 
     this.playbackRate =
       Math.floor(Math.random() * (100 - MinPlaybackRate) + MaxPlaybackRate) /
       100;
+
     this.limiter = new Tone.Limiter(-3).toDestination();
-    this.master = new Tone.Gain().connect(this.limiter);
-    this.reverb = new Tone.Reverb(3).connect(this.master);
+    this.hpFilter = new Tone.Filter(0, "highpass").connect(this.limiter);
+    this.lpFilter = new Tone.Filter(20000, "lowpass").connect(this.hpFilter);
+    this.master = new Tone.Gain().connect(this.lpFilter);
+    this.reverb = new Tone.Reverb(6).connect(this.master);
     this.delay = new Tone.FeedbackDelay(0.5, 0.6).connect(this.reverb);
 
-    this.ensemblePlayer = new Player({
-      url: require("./audio/GOML/ensembleChorus.wav"),
-      fadeIn: 0.1,
-      fadeOut: 0.2,
-      volume: -8,
-      playbackRate: this.playbackRate,
-      destination: this.reverb,
-      onload: this.attemptStart,
-    });
-
-    this.ensembleLoop = new Loop({
-      length: 10,
-      filePosition: 1,
-      startCallback: this.ensemblePlayer.start,
-      stopCallback: this.ensemblePlayer.stop,
-    });
-
-    this.growlPlayer = new Player({
-      url: require("./audio/GOML/growlChorus.wav"),
-      fadeIn: 0.2,
-      fadeOut: 0.2,
-      volume: -100,
-      playbackRate: this.playbackRate,
-      destination: this.reverb,
-      onload: this.attemptStart,
-    });
-
-    this.growlLoop = new Loop({
-      length: 7,
-      filePosition: 1,
-      startCallback: this.growlPlayer.start,
-      stopCallback: this.growlPlayer.stop,
-    });
-
     this.vocoderPlayer = new Player({
-      url: require("./audio/GOML/vocoderChorus.wav"),
-      fadeIn: 0.1,
-      fadeOut: 0,
-      volume: 0,
+      url: require("./audio/GOML/vocoderChorus300_1500.wav"),
+      fadeIn: 0.8,
+      fadeOut: 0.8,
+      volume: -8,
       playbackRate: this.playbackRate,
       destination: this.delay,
       onload: this.attemptStart,
     });
 
     this.vocoderLoop = new Loop({
-      length: 0.5,
-      filePosition: 1,
+      length: 30,
+      filePosition: 0,
       startCallback: this.vocoderPlayer.start,
       stopCallback: this.vocoderPlayer.stop,
-      randomFilePosition: { max: 6, min: 0 },
-      insertCallbacks: [
-        () =>
-          randomValueSwitcher({
-            low: -100,
-            high: -2,
-            probability: 0.3,
-            callback: this.vocoderPlayer.setVolume,
-          }),
-      ],
+    });
+
+    this.ensemblePlayer = new Player({
+      url: require("./audio/GOML/ensembleChorus300_1000.wav"),
+      fadeIn: 3.5,
+      fadeOut: 2,
+      volume: -20,
+      playbackRate: this.playbackRate,
+      destination: this.reverb,
+      onload: this.attemptStart,
+    });
+
+    this.ensembleLoop = new Loop({
+      length: 25,
+      filePosition: 0,
+      startCallback: this.ensemblePlayer.start,
+      stopCallback: this.ensemblePlayer.stop,
     });
 
     this.drumsPlayer = new Player({
-      url: require("./audio/GOML/phaserDrums.wav"),
+      url: require("./audio/GOML/drums300_1000.wav"),
       fadeIn: 0.1,
       fadeOut: 0,
       volume: 0,
@@ -98,24 +74,19 @@ export default class SoundEngineGOML {
         () =>
           randomValueSwitcher({
             low: -100,
-            high: -100,
-            probability: 0.9,
+            high: -15,
+            probability: 0.85,
             callback: this.drumsPlayer.setVolume,
           }),
       ],
     });
 
-    this.players = [
-      this.ensemblePlayer,
-      this.growlPlayer,
-      this.vocoderPlayer,
-      this.drumsPlayer,
-    ];
+    this.players = [this.ensemblePlayer, this.vocoderPlayer, this.drumsPlayer];
 
     this.conductor = new Conductor([
       this.ensembleLoop,
-      this.growlLoop,
       this.vocoderLoop,
+
       this.drumsLoop,
     ]);
 
@@ -144,5 +115,12 @@ export default class SoundEngineGOML {
   }
   mute() {
     Tone.master.mute();
+  }
+  setHpCutoff(val) {
+    this.hpFilter.set({ frequency: val });
+  }
+  setLpCutoff(val) {
+    console.log(val);
+    this.lpFilter.set({ frequency: val });
   }
 }
