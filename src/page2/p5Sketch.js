@@ -1,10 +1,12 @@
 import hydraSketch from "./hydraSketch";
 
 let maskUrl = require("../assets/mask1-hp.obj");
+let maskUrl2 = require("../assets/mask2.obj");
 
 const p5Sketch = (p) => {
   let canvas;
   let mask;
+  let mask2;
   let cam;
   let hydraCanvas;
   let hydraCanvas2d;
@@ -25,6 +27,7 @@ const p5Sketch = (p) => {
 
   p.preload = function () {
     mask = p.loadModel(maskUrl);
+    mask2 = p.loadModel(maskUrl2);
   };
 
   p.setup = function () {
@@ -65,18 +68,8 @@ const p5Sketch = (p) => {
     camPosX = p.lerp(camPosX, camTargetX, 0.05);
     camPosY = p.lerp(camPosY, camTargetY, 0.05);
 
-    // camX = p.map(p.mouseX, 0, p.width, 500, -500);
-    // camY = p.map(p.mouseY, 0, p.height, 500, -500);
-
-    // if(camPosX < camTargetX) {
-    //   camPosX += p.lerp(p.width / 2, camTargetX, 0.1)
-    // }
-
     camX = p.map(camPosX, 0, p.width, 300, -300);
     camY = p.map(camPosY, 0, p.height, 300, -300);
-
-    // camX = p.map(p.lerp(p.width / 2, camTargetX, 0.1), 0, p.width, 500, -500);
-    // camY = p.map(p.lerp(p.height / 2, camTargetY, 0.4), 0, p.height, 500, -500);
 
     p.camera(camX, camY, camZ, camCenterX, camCenterY, camCenterZ, 0, 1, 0);
 
@@ -84,41 +77,48 @@ const p5Sketch = (p) => {
     p.push();
     p.rotateX(p.HALF_PI);
     p.translate(0, -150, -250);
-    p.noFill();
+    p.noStroke();
     p.texture(hydraImageData);
     p.plane(800, 800);
     p.pop();
 
-    //Draw plane 2
-    p.push();
-    p.translate(-600, -200, -700);
-    p.rotateX(15);
-    p.rotateY(15);
-    p.noFill();
-    p.normalMaterial(250);
-    p.texture(hydraImageData);
-    p.plane(800, 800);
-    p.pop();
+    // //Draw plane 2
+    // p.push();
+    // p.translate(-400, -200, -500);
+    // p.rotateX(15);
+    // p.rotateY(15);
+    // p.noFill();
+    // p.normalMaterial(250);
+    // p.texture(hydraImageData);
+    // p.plane(800, 800);
+    // p.pop();
 
-    //Draw plane 2
-    p.push();
-    p.translate(600, -200, -700);
-    p.rotateX(345);
-    p.rotateY(345);
-    p.noFill();
-    p.normalMaterial();
-    p.texture(hydraImageData);
-    p.plane(800, 800);
-    p.pop();
+    // //Draw plane 2
+    // p.push();
+    // p.translate(400, -200, -500);
+    // p.rotateX(345);
+    // p.rotateY(345);
+    // p.noFill();
+    // p.normalMaterial();
+    // p.texture(hydraImageData);
+    // p.plane(800, 800);
+    // p.pop();
 
     //Draw Mask
+
     p.push();
-    p.translate(0, 0, -200);
-    p.scale(50);
+    p.translate(0, 0, -150);
+    p.scale(75);
     p.rotateZ(p.PI);
+    // p.texture(hydraImageData);
     p.noFill();
-    p.normalMaterial();
-    p.model(mask);
+    p.model(mask2);
+    p.pop();
+
+    p.push();
+    p.texture(hydraImageData);
+    // p.noStroke();
+    p.sphere(2000);
     p.pop();
   };
 };

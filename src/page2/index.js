@@ -4,7 +4,7 @@ import Hydra from "hydra-synth";
 import SoundEngineGOML from "../sound/SoundEngineGOML";
 import * as Tone from "tone";
 
-const Sound = new SoundEngineGOML();
+// const Sound = new SoundEngineGOML();
 const hydraCanvas = document.getElementById("hydra-canvas");
 
 window.onload = () => {
@@ -15,6 +15,6 @@ window.onload = () => {
     detectAudio: false,
     enableStreamCapture: false,
   });
-  hydra.setResolution(500, 500);
-  Tone.start().then(Sound.start());
+  hydra.setResolution(1000, 1000);
+  // Tone.start().then(Sound.start());
 };

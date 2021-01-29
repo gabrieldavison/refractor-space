@@ -14,14 +14,21 @@ export default function hydraSketch() {
   //   .diff(o2, 0.1)
   //   .out(o1);
   // render(o1);
-  osc(20, 0.1, 0)
-    .color(0, 1, 2)
-    .rotate(1.57 / 2)
-    .out(o1);
-  osc(30, 0.01, 0)
-    .color(2, 0.7, 1)
-    .modulate(o1, 0)
-    .add(o1, 1)
-    .modulatePixelate(o1, 1, 10)
-    .out(o0);
+
+  // osc(20, 0.1, 0)
+  //   .color(0, 1, 2)
+  //   .rotate(1.57 / 2)
+  //   .out(o1);
+  // osc(30, 0.01, 0)
+  //   .color(2, 0.7, 1)
+  //   .modulate(o1, 0)
+  //   .add(o1, 1)
+  //   .modulatePixelate(o1, 1, 10)
+  //   .out(o0);
+
+  osc().modulateRotate(o0, 0.3).out();
+  osc(33, 0.3, 0.3).diff(o3, 3).out(o1);
+  osc(3, 0.3, 33).modulateKaleid(o3, 3).diff(o0).out(o2);
+  src(o0, 3).mult(o1, 3).kaleid(3).out(o3);
+  render(o2);
 }
