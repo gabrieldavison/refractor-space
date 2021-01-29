@@ -13,3 +13,9 @@
   width: 100vw;
   height: 100vh;
 }
+
+#start-audio {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

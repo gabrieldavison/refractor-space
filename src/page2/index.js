@@ -160,5 +160,8 @@ window.onload = () => {
     enableStreamCapture: false,
   });
   hydra.setResolution(1000, 1000);
-  Tone.start().then(soundEngine.start());
 };
+
+document.getElementById("start-audio").addEventListener("click", () => {
+  Tone.start().then(soundEngine.start());
+});

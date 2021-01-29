@@ -120,7 +120,6 @@ export default class SoundEngineGOML {
     this.hpFilter.set({ frequency: val });
   }
   setLpCutoff(val) {
-    console.log(val);
     this.lpFilter.set({ frequency: val });
   }
 }
