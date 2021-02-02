@@ -10,8 +10,12 @@ let maskUrl2 = require("../assets/mask2.obj");
 
 const soundEngine = new SoundEngineGOML();
 const hydraCanvas = document.getElementById("hydra-canvas");
+document.onscroll = (e) => {
+  e.preventDefault();
+};
 
 const p5Sketch = (p) => {
+  const screenMultiplier = p.windowWidth < 750 ? 0.6 : 1;
   let canvas;
   let mask;
   let mask2;
@@ -36,6 +40,8 @@ const p5Sketch = (p) => {
   let hpCutoffTarget = 0;
   let lpCutoffValue = 20000;
   let lpCutoffTarget = 20000;
+  let decayValue = p.height / 2;
+  let decayTarget = p.height / 2;
 
   p.preload = function () {
     mask = p.loadModel(maskUrl);
@@ -65,12 +71,14 @@ const p5Sketch = (p) => {
     } else {
       lpCutoffTarget = p.mouseX;
     }
+    decayTarget = p.mouseY;
   };
   p.mouseReleased = function () {
     camTargetX = p.width / 2;
     camTargetY = p.height / 2;
     hpCutoffTarget = 0;
-    lpCutoffTarget = 15000;
+    lpCutoffTarget = p.width / 2;
+    decayTarget = p.height / 2;
   };
 
   p.draw = function () {
@@ -82,7 +90,7 @@ const p5Sketch = (p) => {
       hydraCanvas2d.height
     );
     p.ambientLight(250);
-    p.background(200);
+    p.background(0);
     //Set up camera
     camPosX = p.lerp(camPosX, camTargetX, 0.05);
     camPosY = p.lerp(camPosY, camTargetY, 0.05);
@@ -92,52 +100,34 @@ const p5Sketch = (p) => {
 
     p.camera(camX, camY, camZ, camCenterX, camCenterY, camCenterZ, 0, 1, 0);
 
-    hpCutoffValue = p.lerp(hpCutoffValue, hpCutoffTarget, 0.04);
+    hpCutoffValue = p.lerp(hpCutoffValue, hpCutoffTarget, 0.1);
     soundEngine.setHpCutoff(
       p.map(hpCutoffValue, p.width / 2, p.width, 5, 3000, true)
     );
 
-    lpCutoffValue = p.lerp(lpCutoffTarget, lpCutoffValue, 0.1);
+    lpCutoffValue = p.lerp(lpCutoffValue, lpCutoffTarget, 0.08);
     soundEngine.setLpCutoff(
-      p.map(lpCutoffValue, 0, p.width / 2, 500, 15000, true)
+      p.map(lpCutoffValue, -5, p.width / 2, 500, 15000, true)
     );
+
+    decayValue = p.lerp(decayValue, decayTarget, 0.1);
+    soundEngine.setDelayFeedback(p.map(decayValue, p.height, 0, 0, 1, true));
 
     //Draw plane 1
     p.push();
     p.rotateX(p.HALF_PI);
-    p.translate(0, -275, -350);
+    p.translate(0, -275, -350 * screenMultiplier);
     p.noStroke();
     p.texture(hydraImageData);
-    p.plane(800, 800);
+    p.plane(800 * screenMultiplier, 800 * screenMultiplier);
     p.pop();
-
-    // //Draw plane 2
-    // p.push();
-    // p.translate(-400, -200, -500);
-    // p.rotateX(15);
-    // p.rotateY(15);
-    // p.noFill();
-    // p.normalMaterial(250);
-    // p.texture(hydraImageData);
-    // p.plane(800, 800);
-    // p.pop();
-
-    // //Draw plane 2
-    // p.push();
-    // p.translate(400, -200, -500);
-    // p.rotateX(345);
-    // p.rotateY(345);
-    // p.noFill();
-    // p.normalMaterial();
-    // p.texture(hydraImageData);
-    // p.plane(800, 800);
-    // p.pop();
 
     //Draw Mask
 
     p.push();
-    p.translate(0, 0, -150);
-    p.scale(75);
+    p.translate(0, 0, screenMultiplier === 1 ? -150 : -250);
+
+    p.scale(75 * screenMultiplier);
     p.rotateZ(p.PI);
     // p.texture(hydraImageData);
     p.noFill();
@@ -147,7 +137,7 @@ const p5Sketch = (p) => {
     p.push();
     p.texture(hydraImageData);
     // p.noStroke();
-    p.sphere(2000);
+    p.sphere(2000 * screenMultiplier);
     p.pop();
   };
 };

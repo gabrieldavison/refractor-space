@@ -1,34 +1,18 @@
 export default function hydraSketch() {
-  // s2.init({ src: document.getElementById("p5-canvas") });
-  // src(s2).out(o2);
-  // osc(105)
-  //   .color(0.5, 0.1, 0.8)
-  //   .rotate(0.11, 0.1)
-  //   .modulate(osc(10).rotate(0.3).add(o0, 0.1))
-  //   .add(osc(20, 0.01, 1).color(0, 0.8, 1))
-  //   .out(o0);
-  // osc(50, 0.05, 0.7)
-  //   .color(1, 0.7, 0.5)
-  //   .diff(o0)
-  //   .modulate(o1, 0.05)
-  //   .diff(o2, 0.1)
-  //   .out(o1);
-  // render(o1);
+  // osc().modulateRotate(o0, 0.3).out();
+  // osc(33, 0.3, 0.3).diff(o3, 3).out(o1);
+  // osc(3, 0.3, 33).modulateKaleid(o3, 3).diff(o0).out(o2);
+  // src(o0, 3).mult(o1, 3).kaleid(3).out(o3);
+  // render(o2);
 
-  // osc(20, 0.1, 0)
-  //   .color(0, 1, 2)
-  //   .rotate(1.57 / 2)
-  //   .out(o1);
-  // osc(30, 0.01, 0)
-  //   .color(2, 0.7, 1)
-  //   .modulate(o1, 0)
-  //   .add(o1, 1)
-  //   .modulatePixelate(o1, 1, 10)
-  //   .out(o0);
-
-  osc().modulateRotate(o0, 0.3).out();
-  osc(33, 0.3, 0.3).diff(o3, 3).out(o1);
-  osc(3, 0.3, 33).modulateKaleid(o3, 3).diff(o0).out(o2);
-  src(o0, 3).mult(o1, 3).kaleid(3).out(o3);
+  osc()
+    .modulateRotate(o0, () => mouse.x / 7000)
+    .out();
+  osc(33, 0.6, 0.3).diff(o3, 3).out(o1);
+  osc(3, 0.3, 33).modulateKaleid(o3, 20).diff(o0).colorama().out(o2);
+  src(o0, 100)
+    .mult(o1, () => mouse.y / 10)
+    .kaleid(3)
+    .out(o3);
   render(o2);
 }

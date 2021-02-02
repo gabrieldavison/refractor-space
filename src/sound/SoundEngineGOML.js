@@ -21,7 +21,7 @@ export default class SoundEngineGOML {
     this.delay = new Tone.FeedbackDelay(0.5, 0.6).connect(this.reverb);
 
     this.vocoderPlayer = new Player({
-      url: require("./audio/GOML/vocoderChorus300_1500.wav"),
+      url: require("./audio/GOML/vocoderChorusConverted.m4a"),
       fadeIn: 0.8,
       fadeOut: 0.8,
       volume: -8,
@@ -38,7 +38,7 @@ export default class SoundEngineGOML {
     });
 
     this.ensemblePlayer = new Player({
-      url: require("./audio/GOML/ensembleChorus300_1000.wav"),
+      url: require("./audio/GOML/ensembleChorusConverted.m4a"),
       fadeIn: 3.5,
       fadeOut: 2,
       volume: -20,
@@ -55,7 +55,7 @@ export default class SoundEngineGOML {
     });
 
     this.drumsPlayer = new Player({
-      url: require("./audio/GOML/drums300_1000.wav"),
+      url: require("./audio/GOML/drumsConverted.m4a"),
       fadeIn: 0.1,
       fadeOut: 0,
       volume: 0,
@@ -121,5 +121,8 @@ export default class SoundEngineGOML {
   }
   setLpCutoff(val) {
     this.lpFilter.set({ frequency: val });
+  }
+  setDelayFeedback(val) {
+    this.delay.set({ feedback: val });
   }
 }
