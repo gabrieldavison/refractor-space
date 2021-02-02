@@ -7,7 +7,7 @@ export default function hydraSketch() {
     .modulateKaleid(o3, 20)
     .diff(o0)
     .colorama()
-    .saturate(0.7)
+    .saturate(0.8)
     .out(o2);
   src(o0, 100)
     .mult(o1, () => mouse.y / 10)

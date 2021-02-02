@@ -1,5 +1,4 @@
 import p5 from "p5";
-// import p5Sketch from "./p5Sketch";
 import Hydra from "hydra-synth";
 import SoundEngineGOML from "../sound/SoundEngineGOML";
 import * as Tone from "tone";
@@ -27,10 +26,8 @@ const p5Sketch = (p) => {
   let canvas;
   let mask;
   let mask2;
-  let cam;
   let hydraCanvas;
   let hydraCanvas2d;
-
   let hydraContext2d;
   let hydraImageData;
 
@@ -102,7 +99,6 @@ const p5Sketch = (p) => {
     //Set up camera
     camPosX = p.lerp(camPosX, camTargetX, 0.05);
     camPosY = p.lerp(camPosY, camTargetY, 0.05);
-
     camX = p.map(camPosX, 0, p.width, 500, -500);
     camY = p.map(camPosY, 0, p.height, 500, -500);
 
@@ -131,20 +127,17 @@ const p5Sketch = (p) => {
     p.pop();
 
     //Draw Mask
-
     p.push();
     p.translate(0, 0, screenMultiplier === 1 ? -150 : -250);
-
     p.scale(75 * screenMultiplier);
     p.rotateZ(p.PI);
-    // p.texture(hydraImageData);
     p.noFill();
     p.model(mask2);
     p.pop();
 
+    //Draw sphere
     p.push();
     p.texture(hydraImageData);
-    // p.noStroke();
     p.sphere(2000 * screenMultiplier);
     p.pop();
   };
