@@ -14,6 +14,14 @@ document.onscroll = (e) => {
   e.preventDefault();
 };
 
+const playModal = document.getElementById("play-modal");
+const playButton = document.getElementById("play-button");
+console.log(playButton);
+playButton.addEventListener("click", () => {
+  Tone.start().then(soundEngine.start());
+  playModal.classList.add("hidden");
+});
+
 const p5Sketch = (p) => {
   const screenMultiplier = p.windowWidth < 750 ? 0.6 : 1;
   let canvas;
@@ -152,6 +160,6 @@ window.onload = () => {
   hydra.setResolution(1000, 1000);
 };
 
-document.getElementById("start-audio").addEventListener("click", () => {
-  Tone.start().then(soundEngine.start());
-});
+// document.getElementById("start-audio").addEventListener("click", () => {
+//   Tone.start().then(soundEngine.start());
+// });

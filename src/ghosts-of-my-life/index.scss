@@ -1,0 +1,72 @@
+html,
+body {
+  overflow: hidden;
+  height: 100%;
+
+  width: 100%;
+}
+#p5-canvas {
+  display: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+#hydra-canvas,
+#hydra-canvas-2d {
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#start-audio {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.back-button-wrapper {
+  position: fixed;
+  top: 20;
+  left: 0;
+  z-index: 100;
+  padding: 1em;
+
+  .back-button {
+    font-size: 2em;
+    color: white;
+    text-decoration: none;
+    font-family: TerminalGrotesque, monospace;
+    :hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+#play-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+  .play-button {
+    display: block;
+    font-family: TerminalGrotesque, monospace;
+    font-size: 2em;
+    color: white;
+    background-color: black;
+    padding: 0.5em;
+    border-radius: 5px;
+    border: 1px solid white;
+  }
+}
+
+.hidden {
+  display: none !important;
+}

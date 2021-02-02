@@ -4,11 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../reset.css" />
-    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./index.scss" />
     <title>Page2</title>
   </head>
   <body>
-    <button id="start-audio">start audio</button>
+    <div class="back-button-wrapper">
+      <a href="../index.html" class="back-button">back</a>
+    </div>
+    <div id="play-modal">
+      <div id="play-button" class="play-button">start sound</div>
+    </div>
+    <!-- <button id="start-audio">start audio</button> -->
     <canvas id="hydra-canvas"></canvas>
     <canvas id="hydra-canvas-2d"></canvas>
     <script src="./index.js"></script>
