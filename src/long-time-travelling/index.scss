@@ -1,0 +1,24 @@
+#play-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+  .play-button {
+    display: block;
+    font-family: TerminalGrotesque, monospace;
+    font-size: 2em;
+    color: white;
+    background-color: black;
+    padding: 0.5em;
+    border-radius: 5px;
+    border: 1px solid white;
+  }
+}
+.hidden {
+  display: none !important;
+}

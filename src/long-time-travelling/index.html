@@ -1,0 +1,94 @@
+<html>
+
+<head>
+  <script src="hydra-synth.js"></script>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="a-frame_components.js"></script>
+  <link rel="stylesheet" href="index.scss">
+  <title>Long Time Travelling</title>
+</head>
+
+<body>
+  <a-scene>
+
+    <a-assets>
+      <!-- masks -->
+      <a-asset-item id="mask1" src="./masks/mask1.obj"></a-asset-item>
+      <a-asset-item id="mask2" src="./masks/mask2.obj"></a-asset-item>
+      <a-asset-item id="mask3" src="./masks/mask3.obj"></a-asset-item>
+      <a-asset-item id="mask4" src="./masks/mask4.obj"></a-asset-item>
+
+
+      <!-- sound -->
+      <audio id="vocalBottom" src="./audio/vox_bot.m4a" preload="auto"></audio>
+      <audio id="vocalMiddle" src="./audio/vox_mid.m4a" preload="auto"></audio>
+      <audio id="vocalTop" src="./audio/vox_top.m4a" preload="auto"></audio>
+      <audio id="birds" src="./audio/birds.mp3" preload="auto"></audio>
+
+
+    </a-assets>
+    <a-entity modal></a-entity>
+    <a-entity soundcontroller></a-entity>
+    <a-entity light="color: #ffffff; intensity: 1.1; angle: 64.27; castShadow: true; type: spot" 
+              position="0.03674 9.99219 0.15888"  
+              rotation="-90 0 0" 
+              type="directional"
+              
+              ></a-entity>
+    <a-entity light="type: ambient; color: #ffffff; intensity: 0.8;"></a-entity>
+    <!-- <a-sky material="src:#hydra-canvas" hydra></a-sky> -->
+    <a-plane color="#ffffff" height="25" width="25"  rotation="-90 0 0" shadow="receive: true"></a-plane>
+
+    <!-- north mask -->
+    <a-entity position="0.45559 2.2 -4.5" 
+              obj-model="obj: #mask1;" 
+              material="color: #b0b0b0; shader: standard; metalness: 0.7;"
+              scale="0.5 0.5 0.5"
+              sound="src: #vocalBottom; autoplay: false"
+              animation="property: position; to: 0.45559 2.5 -4.5; dur: 9000; easing: easeInOutQuad; loop: true; dir: alternate;"
+              shadow="cast: true"
+              ></a-entity>
+
+    <!-- east mask -->
+
+    <a-entity 
+      position="4.5 2.49 0.03593" 
+      obj-model="obj: #mask4; " 
+      material="color: #b0b0b0; shader: standard; metalness: 0.75;"
+      scale="0.5 0.5 0.5" 
+      rotation="0 -90 0" 
+      sound="src: #birds; autoplay: false"
+      animation="property: position; to: 4.5 2.29 0.03593; dur: 9000; easing: easeInOutQuad; loop: true; dir: alternate;"
+      shadow="cast: true">
+    </a-entity>
+
+
+
+    <!-- south mask -->
+    <a-entity position="-0.04802 2.4 4.5" 
+              obj-model="obj: #mask3; " 
+              material="color: #b0b0b0; shader: standard; metalness: 0.69;"
+              scale="0.5 0.5 0.5" 
+              rotation="0 180 0"
+              sound="src: #vocalTop; autoplay: false"
+              animation="property: position; to: -0.04802 2.2 4.5; dur: 9000; easing: easeInOutQuad; loop: true; dir: alternate;"
+              shadow="cast: true"
+              ></a-entity>
+
+    <!-- west mask -->
+    <a-entity 
+      position="-4.5 2.1 0.13427" 
+      obj-model="obj: #mask2; " 
+      material="color: #b0b0b0; shader: standard; metalness: 0.72;"
+      scale="0.5 0.5 0.5" 
+      rotation="0 90 0" 
+      sound="src: #vocalMiddle; autoplay: false"
+      animation="property: position; to: -4.5 2.3 0.13427; dur: 9000; easing: easeInOutQuad; loop: true; dir: alternate;"
+      shadow="cast: true">
+    </a-entity>
+              
+  </a-scene>
+
+</body>
+
+</html>

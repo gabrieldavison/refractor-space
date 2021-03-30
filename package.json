@@ -20,6 +20,7 @@
   "homepage": "https://github.com/gabrieldavison/circa2000-website#readme",
   "devDependencies": {
     "parcel-bundler": "^1.12.4",
+    "parcel-plugin-static-files-copy": "^2.6.0",
     "sass": "^1.30.0"
   },
   "dependencies": {
@@ -28,5 +29,13 @@
     "navigo": "^7.1.2",
     "p5": "^1.1.9",
     "tone": "^14.7.58"
+  },
+  "staticFiles": {
+        "staticPath": [
+            {
+                "staticPath": "/src/long-time-travelling/masks",
+                "staticOutDir": "/long-time-travelling/masks"
+            }
+        ]
   }
 }
